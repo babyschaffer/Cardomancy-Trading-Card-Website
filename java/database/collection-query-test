@@ -1,0 +1,10 @@
+SELECT c1.collection_id, collection_name, c1.tcg_id, cc.card_id, card_title, quantity
+FROM collections AS c1
+JOIN collections_cards AS cc ON c1.collection_id = cc.collection_id
+JOIN cards ON cc.card_id = cards.card_id
+WHERE c1.collection_id=101
+
+SELECT *
+FROM cards
+LIMIT 10
+

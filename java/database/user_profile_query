@@ -1,0 +1,23 @@
+SELECT *
+FROM USERS;
+
+SELECT * 
+FROM users_friends
+
+SELECT u1.username, img_loc, users_profile.about_me, u2.username as friend
+FROM users_friends
+FULL JOIN users AS u1 ON users_friends.user_id = u1.user_id
+FULL JOIN users AS u2 ON users_friends.friend_id = u2.user_id
+FULL JOIN users_profile ON u1.user_id = users_profile.user_id
+FULL JOIN default_profile_img ON users_profile.pic_id = default_profile_img.pic_id
+WHERE u1.username = 'user'
+ORDER BY friend
+
+SELECT DISTINCT u1.username
+FROM users_friends
+FULL JOIN users AS u1 ON users_friends.user_id = u1.user_id
+FULL JOIN users AS u2 ON users_friends.friend_id = u2.user_id
+FULL JOIN users_profile ON u1.user_id = users_profile.user_id
+FULL JOIN default_profile_img ON users_profile.pic_id = default_profile_img.pic_id
+WHERE u1.username ILIKE '%r%'
+ORDER BY u1.username
